@@ -9,13 +9,13 @@ module Lita
       route(/^vt (.*)/i,
             :virus_total,
             command: false,
-            help: { 'virus total PATTERN' => 'Checks virus total for results of PATTERN' }
+            help: { t('help.vt_key') => t('help.vt_value') }
            )
 
       route(/^virus total (.*)/i,
             :virus_total,
             command: false,
-            help: { 'virus total PATTERN' => 'Checks virus total for results of PATTERN' }
+            help: { t('help.virus_total_key') => t('help.vt_value') }
            )
 
       def virus_total(response)
@@ -35,19 +35,20 @@ module Lita
 
       private
 
-      def header(key, result)
-        positive_results = "#{result['positives']}/#{result['total']} positive results"
-        "#{key} had #{positive_results} on #{result['scan_date']}"
-      end
-
-      def report(key, result)
+      def report(result)
         data = []
-        data << header(key, result)
+        translations = I18n.backend.send(:translations)
+        require 'pp'
+        pp translations
+        data << I18n.translate('lita.handlers.virus-total.report.header', result)
+        binding.pry
+        #data << t("report.header", result)
         if result['positives'] > 0
           positives = result['scans'].map { |k, v| k if v['detected'] }.compact
           data << "Positive scans: #{positives.inspect}"
         end
-        data << "Full report: #{result['permalink']}"
+        #data << t('report.link', link: result['permalink'])
+        data << I18n.translate('lita.handlers.virus_total.report.link', link: result['permalink'])
 
         data.join "\n"
       end
@@ -66,12 +67,12 @@ module Lita
       def file_report(hash)
         result = Uirusu::VTFile.query_report(api_key, hash)
 
-        report hash, result
+        report result
       end
 
       def url_report(url)
         result = Uirusu::VTUrl.query_report(api_key, url)
-        report url, result
+        report result
       end
 
       Lita.register_handler(self)

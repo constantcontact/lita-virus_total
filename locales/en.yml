@@ -1,4 +1,11 @@
 en:
   lita:
     handlers:
-      virus_total:
+      virus-total:
+        help:
+          vt_key: 'vt PATTERN'
+          virus_total_key: 'virus total PATTERN'
+          vt_value: 'Checks virus total for results of PATTERN'
+        report:
+          header: "%{resource} had %{positives}/%{total} positive results on %{scan_date}"
+          link: "Full report: %{link}"
