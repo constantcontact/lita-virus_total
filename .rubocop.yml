@@ -1,0 +1,7 @@
+# I never write any, so don't bug me about it
+Documentation:
+  Enabled: false
+
+# 80 is rather short
+LineLength:
+  Max: 120

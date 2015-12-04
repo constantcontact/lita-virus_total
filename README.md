@@ -1,16 +1,16 @@
-# lita-virus-total
+# lita-virus_total
 
-[![Build Status](https://travis-ci.org/constantcontact/lita-virus-total.png?branch=master)](https://travis-ci.org/constantcontact/lita-virus-total)
-[![Coverage Status](https://coveralls.io/repos/constantcontact/lita-virus-total/badge.png)](https://coveralls.io/r/constantcontact/lita-virus-total)
+[![Build Status](https://travis-ci.org/constantcontact/lita-virus_total.png?branch=master)](https://travis-ci.org/constantcontact/lita-virus_total)
+[![Coverage Status](https://coveralls.io/repos/constantcontact/lita-virus_total/badge.png)](https://coveralls.io/r/constantcontact/lita-virus_total)
 
 TODO: Add a description of the plugin.
 
 ## Installation
 
-Add lita-virus-total to your Lita instance's Gemfile:
+Add lita-virus_total to your Lita instance's Gemfile:
 
 ``` ruby
-gem "lita-virus-total"
+gem "lita-virus_total"
 ```
 
 ## Configuration
