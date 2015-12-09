@@ -2,30 +2,26 @@ module Lita
   module Handlers
     class VirusTotal < Handler
       require 'uirusu'
-      require 'uri'
 
       config :api_key, required: true
 
-      route(/^vt (.*)/i,
+      route(/^vt (?<pattern>.*)/i,
             :virus_total,
             command: false,
             help: { 'vt PATTERN' => 'Checks virus total for results of PATTERN' }
            )
 
-      route(/^virus total (.*)/i,
+      route(/^virus total (?<pattern>.*)/i,
             :virus_total,
             command: false,
             help: { 'virus total PATTERN' => 'Checks virus total for results of PATTERN' }
            )
 
       def virus_total(response)
-        match = response.match_data[1]
-
-        message = case
-                  when url?(match)
+        match = response.match_data[:pattern]
+        message = case match
+                  when /\S+\.\S+/
                     url_report match
-                  when match =~ /\S+\.\S+/
-                    url_report(match)
                   else
                     file_report match
                   end
@@ -36,27 +32,22 @@ module Lita
       private
 
       def header(key, result)
-        positive_results = "#{result['positives']}/#{result['total']} positive results"
-        "#{key} had #{positive_results} on #{result['scan_date']}"
+        positive_results = "#{result.fetch('positives', '?')}/#{result.fetch('total', '?')} positive results"
+        "#{key} had #{positive_results} on #{result.fetch('scan_date', 'Date Unknown')}"
       end
 
       def report(key, result)
         data = []
         data << header(key, result)
-        if result['positives'] > 0
-          positives = result['scans'].map { |k, v| k if v['detected'] }.compact
-          data << "Positive scans: #{positives.inspect}"
-        end
-        data << "Full report: #{result['permalink']}"
+        positives = positive_list result
+        data << "Positive scans: #{positives}" if positives.any?
+        data << "Full report: #{result.fetch('permalink', 'Link Unavailable')}"
 
         data.join "\n"
       end
 
-      def url?(url)
-        uri = URI.parse url
-        uri.is_a? URI::HTTP
-      rescue URI::InvalidURIError
-        false
+      def positive_list(result)
+        result.fetch('scans', 'Unknown' => 'detected').map { |k, v| k if v['detected'] }.compact
       end
 
       def api_key

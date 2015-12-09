@@ -4,7 +4,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
 ]
-SimpleCov.start { add_filter '/spec/' }
+SimpleCov.start { add_filter '/spec/' } unless ENV['SKIP_COVERAGE']
 
 require 'lita/virus_total'
 require 'lita/rspec'
