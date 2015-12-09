@@ -1,7 +1,7 @@
 # lita-virus_total
 
 [![Build Status](https://travis-ci.org/constantcontact/lita-virus_total.png?branch=master)](https://travis-ci.org/constantcontact/lita-virus_total)
-[![Coverage Status](https://coveralls.io/repos/constantcontact/lita-virus_total/badge.png)](https://coveralls.io/r/constantcontact/lita-virus_total)
+[![Coverage Status](https://coveralls.io/repos/constantcontact/lita-virus_total/badge.svg?branch=master&service=github)](https://coveralls.io/github/constantcontact/lita-virus_total?branch=master)
 
 Adds the capability to call the virus total api to scan for file hashes and urls.
 
