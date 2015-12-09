@@ -1,12 +1,16 @@
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'lita/virus_total/version'
+
 Gem::Specification.new do |spec|
   spec.name          = 'lita-virus_total'
-  spec.version       = '0.1.0'
+  spec.version       = Lita::VirusTotal::VERSION
   spec.authors       = ["'Joseph Henrich'"]
   spec.email         = ['jhenrich@constantcontact.com']
-  spec.description   = 'ODO: Add a description'
-  spec.summary       = 'ODO: Add a summary'
-  spec.homepage      = 'ODO: Add a homepage'
-  spec.license       = 'ODO: Add a license'
+  spec.description   = 'Use the virus total api to check file hashes and urls'
+  spec.summary       = 'Use the virus total api to check file hashes and urls'
+  spec.homepage      = 'http://github.com/constantcontact/lita-virus_total'
+  spec.license       = 'BSD'
   spec.metadata      = { 'lita_plugin_type' => 'handler' }
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
