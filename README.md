@@ -1,5 +1,6 @@
 # lita-virus_total
 
+[![Gem Version](https://badge.fury.io/rb/lita-virus_total.svg)](https://badge.fury.io/rb/lita-virus_total)
 [![Build Status](https://travis-ci.org/constantcontact/lita-virus_total.png?branch=master)](https://travis-ci.org/constantcontact/lita-virus_total)
 [![Coverage Status](https://coveralls.io/repos/constantcontact/lita-virus_total/badge.svg?branch=master&service=github)](https://coveralls.io/github/constantcontact/lita-virus_total?branch=master)
 
